@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projet_modifs",
+  "info": {
+    "singularName": "projet-modif",
+    "pluralName": "projet-modifs",
+    "displayName": "projetModif",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nom": {
+      "type": "string",
+      "required": false,
+      "unique": false
+    },
+    "Description": {
+      "type": "richtext",
+      "required": true
+    },
+    "Deadline": {
+      "type": "date"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Web",
+        "Mobile",
+        "CMS",
+        "Design",
+        "CM"
+      ],
+      "required": true
+    },
+    "users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "projetsNotif"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Modification",
+        "Création",
+        "Suppression"
+      ]
+    },
+    "projet": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::projet.projet",
+      "inversedBy": "projet_modif"
+    },
+    "taches": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tache.tache",
+      "mappedBy": "projet_modif"
+    }
+  }
+}

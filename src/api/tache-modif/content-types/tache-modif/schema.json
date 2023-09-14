@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tache_modifs",
+  "info": {
+    "singularName": "tache-modif",
+    "pluralName": "tache-modifs",
+    "displayName": "TacheModif",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "IsFinished": {
+      "type": "enumeration",
+      "enum": [
+        "En cours",
+        "En arrêt",
+        "Terminé"
+      ]
+    },
+    "deadline": {
+      "type": "date"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "tache_modifs"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Modification",
+        "Création",
+        "Suppression"
+      ]
+    },
+    "tache": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tache.tache",
+      "mappedBy": "tache_modif"
+    },
+    "projet": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::projet.projet",
+      "inversedBy": "tache_modifs"
+    }
+  }
+}

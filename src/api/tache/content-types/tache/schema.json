@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "taches",
+  "info": {
+    "singularName": "tache",
+    "pluralName": "taches",
+    "displayName": "Tâche",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "IsFinished": {
+      "type": "enumeration",
+      "enum": [
+        "En cours",
+        "En arrêt",
+        "Terminé"
+      ],
+      "default": "En cours",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "taches"
+    },
+    "deadline": {
+      "type": "date"
+    },
+    "projets": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::projet.projet",
+      "inversedBy": "taches"
+    },
+    "tache_modif": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tache-modif.tache-modif",
+      "inversedBy": "tache"
+    },
+    "projet_modif": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::projet-modif.projet-modif",
+      "inversedBy": "taches"
+    }
+  }
+}

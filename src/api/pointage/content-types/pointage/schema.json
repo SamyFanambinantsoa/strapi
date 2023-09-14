@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pointages",
+  "info": {
+    "singularName": "pointage",
+    "pluralName": "pointages",
+    "displayName": "Pointage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "DateNow": {
+      "type": "date",
+      "required": true,
+      "unique": false
+    },
+    "HeureDebut": {
+      "type": "time"
+    },
+    "HeurePause": {
+      "type": "time"
+    },
+    "HeureReprise": {
+      "type": "time"
+    },
+    "HeureFin": {
+      "type": "time"
+    },
+    "rapport": {
+      "type": "text"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "pointage"
+    }
+  }
+}
